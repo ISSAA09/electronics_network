@@ -11,6 +11,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class SupplierSerializer(serializers.ModelSerializer):
     product = ProductSerializer(many=True, required=False)
+    # Проверка на соответствие иерархической структуры
     validators = [SimultaneousSelectionValidator(network_level='network_level', supply='supply')]
 
     class Meta:
@@ -25,4 +26,4 @@ class SupplierUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
         fields = '__all__'
-        read_only_fields = ['debt_to_supplier']
+        read_only_fields = ['debt_to_supplier']  # запрет на обновление поля «Задолженность перед поставщиком»

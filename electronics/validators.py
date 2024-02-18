@@ -2,6 +2,9 @@ from rest_framework.serializers import ValidationError
 
 
 class SimultaneousSelectionValidator:
+    """
+        Проверка на соответствие иерархической структуры
+    """
     def __init__(self, supply, network_level):
         self.supplier = supply
         self.network_level = network_level

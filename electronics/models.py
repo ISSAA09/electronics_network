@@ -5,7 +5,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=255, verbose_name='товар')
+    title = models.CharField(max_length=255, verbose_name='название')
     product_model = models.CharField(max_length=255, verbose_name='модель')
     launch_date = models.DateField(verbose_name='дата выхода товара на рынок')
 
@@ -22,11 +22,11 @@ class Supplier(models.Model):
         """
         Иерархическая структура сети по продаже электроники:
         Уровень 0: Завод
-        - Поставщик: Производители электроники, Завод
+        - Поставщик: Завод
         Уровень 1: Розничная сеть
         - Поставщик: Завод, Розничная сеть
         Уровень 2: Индивидуальный предприниматель
-        - Поставщик: Розничная сеть, завод
+        - Поставщик: Розничная сеть, завод, ИП
         """
         FACTORY = 0, 'Завод'
         RETAIL = 1, 'Розничная сеть'

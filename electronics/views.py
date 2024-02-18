@@ -9,10 +9,14 @@ from users.permissions import IsOwner, IsAdmin, IsActive
 
 
 class ProductViewSet(viewsets.ModelViewSet):
+    """
+        Контроллер для модели Продуктов
+    """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
     def get_permissions(self):
+
         if self.action == 'retrieve':
             permission_classes = [IsAuthenticated, IsActive]
         elif self.action == 'create':
@@ -30,6 +34,9 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class SupplierViewSet(viewsets.ModelViewSet):
+    """
+        Контроллер для модели Поставщик
+    """
     queryset = Supplier.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_class = SupplierFilter
