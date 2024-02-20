@@ -5,17 +5,31 @@ from electronics.models import Supplier, Product
 @admin.register(Supplier)
 class SupplierAdmin(admin.ModelAdmin):
     """
-        Ссылка на поставщика в админ-панели
+    Ссылка на поставщика в админ-панели
     """
-    list_display = ('author', 'title', 'network_level', 'country', 'city', 'debt_to_supplier', 'created_at')
-    list_filter = ('network_level', 'title', 'product', 'country',)  # фильтр по названию города и не только
-    search_fields = ('network_level', 'product', 'country')
+
+    list_display = (
+        "author",
+        "title",
+        "network_level",
+        "country",
+        "city",
+        "debt_to_supplier",
+        "created_at",
+    )
+    list_filter = (
+        "network_level",
+        "title",
+        "product",
+        "country",
+    )  # фильтр по названию города и не только
+    search_fields = ("network_level", "product", "country")
     actions = ["clear_debt"]
 
     @admin.action(description="Clearing the debt to the supplier")
     def clear_debt(self, request, queryset):
         """
-            «admin action», очищающий задолженность перед поставщиком у выбранных объектов.
+        «admin action», очищающий задолженность перед поставщиком у выбранных объектов.
         """
         queryset.update(debt_to_supplier=0)
 
@@ -23,6 +37,7 @@ class SupplierAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     """
-        Ссылка на товары в админ-панели
+    Ссылка на товары в админ-панели
     """
-    list_display = ('title', 'product_model', 'launch_date')
+
+    list_display = ("title", "product_model", "launch_date")

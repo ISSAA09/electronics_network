@@ -4,7 +4,7 @@ from users.models import UserRole
 
 class IsActive(BasePermission):
     """
-        Настройка права доступа, чтобы только активные сотрудники имели доступ к API.
+    Настройка права доступа, чтобы только активные сотрудники имели доступ к API.
     """
 
     def has_permission(self, request, view):
